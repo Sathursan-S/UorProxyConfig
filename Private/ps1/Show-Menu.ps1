@@ -9,22 +9,21 @@ function Show-Menu {
     while ($true) {
         Clear-Host
 
-        Write-Host "╭──────────────────────----------------------─────────────────────╮"
-        Write-Host "│                      UoR-FoE Proxy Config                       │"
-        Write-Host "╰──────────────────────----------------------─────────────────────╯"
+        Write-Host "`e[38;2;52;152;219m╭──────────────────────----------------------─────────────────────╮`e[0m"
+        Write-Host "`e[38;2;52;152;219m│                      UoR-FoE Proxy Config                       │`e[0m"
+        Write-Host "`e[38;2;52;152;219m╰──────────────────────----------------------─────────────────────╯`e[0m"
         Write-Host ""
-        Write-Host " TO TOGGLE PROXY SETTINGS:"
-        Write-Host " Use the arrow keys to select an option and press Enter to confirm."
-        write-host ""
-
+        Write-Host "`e[38;2;46;204;113mTO TOGGLE PROXY SETTINGS:`e[0m"
+        Write-Host "Use the arrow keys to select an option and press Enter to confirm."
+        Write-Host ""
+    
         for ($i = 0; $i -lt $Options.Count; $i++) {
             if ($i -eq $selectedOption) {
-                Write-Host "      ► $($Options[$i])" -ForegroundColor Blue
+                Write-Host "`e[38;2;241;196;15m      ► $($Options[$i])`e[0m"
+            } else {
+                Write-Host "`e[38;2;236;240;241m        $($Options[$i])`e[0m"
             }
-            else {
-                Write-Host "        $($Options[$i])"
-            }
-        }
+        }    
 
         $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
 

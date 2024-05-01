@@ -21,14 +21,16 @@ function Switch-Proxy {
                 Switch-Npm-Proxy -ProxySocketAddress $ProxySocketAddress
             }
             "Exit" {
-                Write-Host "Exiting..." -ForegroundColor Red
-                exit
                 break
             }
         }
         
         Write-Host ""
-        Write-Host "Press any key to continue..."
-        $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        Write-Host "Press any key to continue... or press 'q' to exit."
+        $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
+        if ($key -eq 81) {
+            Write-Host "Exiting..." -ForegroundColor Red
+            break
+        }
     }
 }

@@ -12,7 +12,7 @@
 RootModule = 'UorProxyConfig.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0'
+ModuleVersion = '1.0.2'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -27,7 +27,7 @@ Author = 'Sathursan-S'
 CompanyName = 'University of Ruhuna'
 
 # Copyright statement for this module
-Copyright = '2024 UoR-FOE Proxy Configuration Module by Benjamin Heater'
+Copyright = '2024 UoR-FOE Proxy Configuration Module by Sathursan-S'
 
 # Description of the functionality provided by this module
 Description = 'UoR-FOE Proxy Configuration Module'

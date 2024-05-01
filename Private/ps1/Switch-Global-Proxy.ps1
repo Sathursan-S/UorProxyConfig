@@ -20,8 +20,11 @@ function Switch-Global-Proxy {
                 Write-Host "Disabling global proxy settings..." -ForegroundColor Red
                 Set-ItemProperty -Path $registryPath -Name $registryName -Value 0
 
-                $env:HTTP_PROXY = $null
-                $env:HTTPS_PROXY = $null
+                Remove-NpmProxy
+                Remove-GitProxy
+
+                [Environment]::SetEnvironmentVariable("HTTP_PROXY", "", "User")
+                [Environment]::SetEnvironmentVariable("HTTPS_PROXY", "", "User")
 
                 $proxyEnable = 0
             } else {
@@ -30,8 +33,11 @@ function Switch-Global-Proxy {
                 Set-ItemProperty -Path $registryPath -Name "ProxyServer" -Value $ProxySocketAddress
                 Write-Host "Proxy server set to $ProxySocketAddress" -ForegroundColor Green
 
-                $env:HTTP_PROXY = $ProxySocketAddress
-                $env:HTTPS_PROXY = $ProxySocketAddress
+                [Environment]::SetEnvironmentVariable("HTTP_PROXY", $ProxySocketAddress, "User")
+                [Environment]::SetEnvironmentVariable("HTTPS_PROXY", $ProxySocketAddress, "User")
+
+                Set-NpmProxy -ProxySocketAddress $ProxySocketAddress
+                Set-GitProxy -ProxySocketAddress $ProxySocketAddress
 
                 $proxyEnable = 1
             }

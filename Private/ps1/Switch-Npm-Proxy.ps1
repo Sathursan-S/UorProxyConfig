@@ -14,13 +14,9 @@ function Switch-Npm-Proxy {
     process {
         try {
             if ($npmProxyStatus -eq "null") {
-                Write-Host "Enabling NPM proxy settings..." -ForegroundColor Green
-                npm config set proxy $ProxySocketAddress
-                npm config set https-proxy $ProxySocketAddress
+                Set-NpmProxy -ProxySocketAddress $ProxySocketAddress
             } else {
-                Write-Host "Disabling NPM proxy settings..." -ForegroundColor Red
-                npm config delete proxy
-                npm config delete https-proxy
+                Remove-NpmProxy
             }
         } catch {
             Write-Error "An error occurred while toggling NPM proxy settings: $_"
@@ -29,5 +25,31 @@ function Switch-Npm-Proxy {
 
     end {
         Write-Host "NPM proxy settings toggled successfully!"
+    }
+}
+
+function Set-NpmProxy {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        $ProxySocketAddress
+    )
+
+    try {
+        Write-Host "Setting NPM proxy settings..." -ForegroundColor Green
+        npm config set proxy $ProxySocketAddress
+        npm config set https-proxy $ProxySocketAddress
+    } catch {
+        throw "An error occurred while setting NPM proxy settings: $_"
+    }
+}
+
+function Remove-NpmProxy {
+    try {
+        Write-Host "Unsetting NPM proxy settings..." -ForegroundColor Red
+        npm config delete proxy
+        npm config delete https-proxy
+    } catch {
+        throw "An error occurred while unsetting NPM proxy settings: $_"
     }
 }

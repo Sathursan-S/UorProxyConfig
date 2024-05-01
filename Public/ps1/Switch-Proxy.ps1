@@ -1,4 +1,4 @@
-function Switch-Proxy {
+﻿function Switch-Proxy {
     while($true){
         # $ProxySocketAddress = Read-Host "Enter the proxy server address (e.g. http://proxy.example.com:8080)"
         $ProxySocketAddress = "http://10.50.225.222:3128"
@@ -10,6 +10,9 @@ function Switch-Proxy {
             )
         $currentProxyStatus = Get-CurrenProxyStatus
         $selectedOption = Show-Menu -Options $proxyOptions -CurrentProxyStatus $currentProxyStatus
+        # if($PSVersionTable.PSVersion.Major -ge 7){
+        #     $selectedOption = Show-MenuPS7 -Options $proxyOptions -CurrentProxyStatus $currentProxyStatus
+        # }
 
         switch ($selectedOption) {
             "Toggle Global Proxy" {

@@ -6,9 +6,10 @@ function Switch-Proxy {
             "Toggle Global Proxy", 
             "Toggle Git Proxy", 
             "Toggle NPM Proxy", 
-            "Exit"
+            "Exit(q)"
             )
-        $selectedOption = Show-Menu -Options $proxyOptions
+        $currentProxyStatus = Get-CurrenProxyStatus
+        $selectedOption = Show-Menu -Options $proxyOptions -CurrentProxyStatus $currentProxyStatus
 
         switch ($selectedOption) {
             "Toggle Global Proxy" {
@@ -20,17 +21,15 @@ function Switch-Proxy {
             "Toggle NPM Proxy" {
                 Switch-Npm-Proxy -ProxySocketAddress $ProxySocketAddress
             }
-            "Exit" {
-                break
+            "Exit(q)" {
+                Write-Host ""
+                Write-Host "Press 'q' to`e[38;2;255;0;0m EXIT`e[0m or Press any key to continue..."
+                $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
+                if ($key -eq 81) {
+                    Write-Host "Exiting..." -ForegroundColor Red
+                    return
+                }
             }
-        }
-        
-        Write-Host ""
-        Write-Host "Press any key to continue... or press 'q' to exit."
-        $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
-        if ($key -eq 81) {
-            Write-Host "Exiting..." -ForegroundColor Red
-            break
         }
     }
 }

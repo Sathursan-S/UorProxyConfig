@@ -30,7 +30,7 @@ CompanyName = 'University of Ruhuna'
 Copyright = '2024 UoR-FOE Proxy Configuration Module by Sathursan-S'
 
 # Description of the functionality provided by this module
-Description = 'UoR-FOE Proxy Configuration Module'
+Description = 'UoR-FOE Proxy Configuration Module. This module provides a set of functions to toggle proxy settings for NPM, Git, and Windows. This module is intended for use by students and staff of the Faculty of Engineering, University of Ruhuna Who are using faculty proxy servers to access the internet and do development work with NPM, Git, and etc. This module is intended to be used in the PowerShell environment to easily toggle proxy settings for NPM, Git, and Windows.'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''

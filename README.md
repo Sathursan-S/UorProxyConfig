@@ -43,6 +43,10 @@ You can also install the UoR-FOE Proxy Configuration Module from the PowerShell 
    ```sh
    Get-Module -Name UorProxyConfig
    ```
+4. If error occurs with the current Execution Policy:
+   ```sh
+   Set-ExecutionPolicy RemoteSigned
+   ```
 
 ## Usage
 
